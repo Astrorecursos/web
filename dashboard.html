@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrorecursos</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+
+<body>
+    <canvas id="rainfall"></canvas>
+
+    <!-- Contenido que aparece delante de la lluvia -->
+    <div class="content">
+        <h1>Astrorecursos</h1>
+        <p>Organiza tus recursos de manera eficaz y sencilla</p>
+        <!-- Puedes añadir más contenido aquí -->
+    </div>
+    <script>
+        // Verificar si el usuario ha iniciado sesión
+        if (localStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'index.html'; // Redirige al login si no está logueado
+        }
+    </script>
+    <script>
+        const canvas = document.getElementById('rainfall');
+        const ctx = canvas.getContext('2d');
+
+        // Ajustar el tamaño del canvas para que coincida con el tamaño de la ventana
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Crear un array para almacenar las gotas de lluvia
+        const raindrops = [];
+
+        // Función para crear una nueva gota de lluvia
+        function createRaindrop() {
+            const x = Math.random() * canvas.width;
+            const y = -5;
+            const speed = Math.random() * 5 + 2;
+            const length = Math.random() * 20 + 10;
+
+            raindrops.push({ x, y, speed, length });
+        }
+
+        // Función para actualizar la posición de las gotas de lluvia
+        function updateRaindrops() {
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+
+                raindrop.y += raindrop.speed;
+
+                if (raindrop.y > canvas.height) {
+                    raindrops.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        // Función para dibujar las gotas de lluvia
+        function drawRaindrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+
+                ctx.beginPath();
+                ctx.moveTo(raindrop.x, raindrop.y);
+                ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+                ctx.stroke();
+            }
+        }
+
+        // Función para animar las gotas de lluvia
+        function animate() {
+            createRaindrop();
+            updateRaindrops();
+            drawRaindrops();
+
+            requestAnimationFrame(animate);
+        }
+
+        // Iniciar la animación
+        animate();
+    </script>
+</body>
+</html>

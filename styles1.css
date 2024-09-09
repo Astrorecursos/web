@@ -1,0 +1,24 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    overflow: hidden;
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+}
+        /* Canvas de la animación de lluvia */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Fondo detrás del contenido, pero sobre la imagen */
+}
+
+        /* Contenido que va al frente */
+.content {
+    position: relative;
+    z-index: 2; /* Contenido al frente */
+    color: white;
+    text-align: center;
+    padding: 50px;
+    font-size: 24px;
+}
