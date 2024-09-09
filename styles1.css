@@ -5,7 +5,8 @@ body {
     overflow: hidden;
     background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
 }
-        /* Canvas de la animación de lluvia */
+
+/* Canvas de la animación de lluvia */
 canvas {
     position: absolute;
     top: 0;
@@ -13,12 +14,41 @@ canvas {
     z-index: 1; /* Fondo detrás del contenido, pero sobre la imagen */
 }
 
-        /* Contenido que va al frente */
+/* Barra de navegación */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con transparencia */
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+    z-index: 3; /* Se coloca al frente, encima del canvas */
+    font-family: Arial, sans-serif;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Contenido que va al frente */
 .content {
     position: relative;
     z-index: 2; /* Contenido al frente */
     color: white;
     text-align: center;
-    padding: 50px;
+    margin-top: 100px; /* Se baja el contenido para evitar superposición con la barra */
     font-size: 24px;
+    padding: 50px;
 }
