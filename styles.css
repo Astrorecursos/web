@@ -3,7 +3,8 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(#30142b, #a12727);
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +18,7 @@ html, body {
 .login-box {
     width: 300px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7); /* Más oscuro para mejor contraste con el fondo */
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     color: white;
