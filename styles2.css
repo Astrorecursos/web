@@ -1,0 +1,81 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+canvas {
+    position: fixed; /* Canvas como fondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Fondo detrás del contenido */
+    pointer-events: none; /* Evita interferencias con los clics */
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con transparencia */
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+    z-index: 3; /* Se coloca al frente, encima del canvas */
+}
+
+nav a {
+    color: white;
+    text-decoration: none; /* Elimina el subrayado */
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    text-decoration: none; /* Asegura que no haya subrayado al hacer hover */
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Contenido al frente */
+    text-align: center;
+    padding: 50px;
+    margin-top: 100px; /* Espacio para evitar el menú */
+    min-height: 100vh; /* Altura mínima para permitir desplazamiento */
+}
+
+.contact-info, .contact-team {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.contact-info p, .contact-team p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #1e90ff;
+    text-decoration: none; /* Sin subrayado para todos los enlaces */
+}
+
+a:hover {
+    text-decoration: underline; /* Mantén el subrayado al hacer hover solo si es necesario */
+}
