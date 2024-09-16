@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Astrorecursos</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+
+<body>
+    <canvas id="rainfall"></canvas>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="recursos.html">Recursos</a>
+    </nav>
+
+    <div class="content">
+        <h1>Recursos</h1>
+        <div class="resource-form">
+            <h2>Agregar un nuevo recurso</h2>
+            <form id="resourceForm">
+                <input type="text" id="resourceName" placeholder="Nombre del recurso" required>
+                <input type="number" id="resourceQuantity" placeholder="Cantidad" required min="1">
+                <button type="submit">Agregar recurso</button>
+            </form>
+        </div>
+
+        <div class="resource-list">
+            <h2>Lista de recursos</h2>
+            <ul id="resourceList">
+                <!-- Los recursos se agregarán dinámicamente aquí -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Código de lluvia (el mismo que en las otras páginas)
+        const canvas = document.getElementById('rainfall');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const raindrops = [];
+
+        function createRaindrop() {
+            const x = Math.random() * canvas.width;
+            const y = -5;
+            const speed = Math.random() * 5 + 2;
+            const length = Math.random() * 20 + 10;
+            raindrops.push({ x, y, speed, length });
+        }
+
+        function updateRaindrops() {
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+                raindrop.y += raindrop.speed;
+                if (raindrop.y > canvas.height) {
+                    raindrops.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function drawRaindrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+                ctx.beginPath();
+                ctx.moveTo(raindrop.x, raindrop.y);
+                ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            createRaindrop();
+            updateRaindrops();
+            drawRaindrops();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Código de gestión de recursos
+        const resourceForm = document.getElementById('resourceForm');
+        const resourceList = document.getElementById('resourceList');
+
+        resourceForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const resourceName = document.getElementById('resourceName').value;
+            const resourceQuantity = document.getElementById('resourceQuantity').value;
+
+            if (resourceName && resourceQuantity) {
+                const resourceItem = document.createElement('li');
+                resourceItem.innerHTML = `
+                    <span>${resourceName} (Cantidad: <span class="quantity">${resourceQuantity}</span>)</span>
+                    <button class="edit">Editar</button>
+                    <button class="delete">Eliminar</button>
+                `;
+
+                resourceList.appendChild(resourceItem);
+
+                // Limpiar el formulario después de agregar
+                document.getElementById('resourceName').value = '';
+                document.getElementById('resourceQuantity').value = '';
+
+                // Funcionalidad para editar y eliminar recursos
+                resourceItem.querySelector('.edit').addEventListener('click', function() {
+                    const newQuantity = prompt('Nueva cantidad:', resourceItem.querySelector('.quantity').textContent);
+                    if (newQuantity && !isNaN(newQuantity)) {
+                        resourceItem.querySelector('.quantity').textContent = newQuantity;
+                    }
+                });
+
+                resourceItem.querySelector('.delete').addEventListener('click', function() {
+                    resourceItem.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
