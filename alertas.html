@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas - Astrorecursos</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+
+<body>
+    <canvas id="rainfall"></canvas>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="recursos.html">Recursos</a>
+        <a href="alertas.html">Alertas</a>
+    </nav>
+
+    <div class="content">
+        <h1>Alertas de Recursos</h1>
+        <div class="alert-list">
+            <ul id="alertList">
+                <!-- Las alertas se agregarán dinámicamente aquí -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Lluvia como en otras páginas
+        const canvas = document.getElementById('rainfall');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const raindrops = [];
+
+        function createRaindrop() {
+            const x = Math.random() * canvas.width;
+            const y = -5;
+            const speed = Math.random() * 5 + 2;
+            const length = Math.random() * 20 + 10;
+            raindrops.push({ x, y, speed, length });
+        }
+
+        function updateRaindrops() {
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+                raindrop.y += raindrop.speed;
+                if (raindrop.y > canvas.height) {
+                    raindrops.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function drawRaindrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+                ctx.beginPath();
+                ctx.moveTo(raindrop.x, raindrop.y);
+                ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            createRaindrop();
+            updateRaindrops();
+            drawRaindrops();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Mostrar alertas
+        document.addEventListener('DOMContentLoaded', checkAlerts);
+
+        function checkAlerts() {
+            const alertList = document.getElementById('alertList');
+            alertList.innerHTML = '';
+
+            const resources = JSON.parse(localStorage.getItem('resources')) || [];
+
+            resources.forEach(resource => {
+                const currentPercentage = (resource.quantity / resource.max) * 100;
+                if (currentPercentage < resource.threshold) {
+                    const li = document.createElement('li');
+                    li.textContent = `Alerta: El recurso ${resource.name} está por debajo del umbral (${currentPercentage.toFixed(2)}% disponible).`;
+                    alertList.appendChild(li);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
