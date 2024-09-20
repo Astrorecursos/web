@@ -11,10 +11,10 @@
     <canvas id="rainfall"></canvas>
 
     <nav>
-        <a href="dashboard.html">Inicio</a>
+        <a href="index.html">Inicio</a>
         <a href="contacto.html">Contacto</a>
         <a href="AstroRecursoV0.3.html">Simulación</a>
-        <a href="alertas.html">alertas</a>
+        <a href="alertas.html">Alertas</a> <!-- Enlace a la página de alertas -->
     </nav>
 
     <div class="content">
@@ -24,6 +24,8 @@
             <form id="resourceForm">
                 <input type="text" id="resourceName" placeholder="Nombre del recurso" required>
                 <input type="number" id="resourceQuantity" placeholder="Cantidad" required min="1">
+                <input type="number" id="resourceMax" placeholder="Cantidad máxima" required min="1">
+                <input type="number" id="resourceThreshold" placeholder="Umbral (%)" required min="1" max="100">
                 <button type="submit">Agregar recurso</button>
             </form>
         </div>
@@ -37,7 +39,7 @@
     </div>
 
     <script>
-        // Código de lluvia (el mismo que en las otras páginas)
+        // Código de lluvia (el mismo de antes)
         const canvas = document.getElementById('rainfall');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -86,43 +88,90 @@
 
         animate();
 
-        // Código de gestión de recursos
+        // Código para gestionar recursos con alertas y almacenamiento local
         const resourceForm = document.getElementById('resourceForm');
         const resourceList = document.getElementById('resourceList');
+
+        // Cargar recursos desde el LocalStorage al cargar la página
+        document.addEventListener('DOMContentLoaded', loadResources);
 
         resourceForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const resourceName = document.getElementById('resourceName').value;
             const resourceQuantity = document.getElementById('resourceQuantity').value;
+            const resourceMax = document.getElementById('resourceMax').value;
+            const resourceThreshold = document.getElementById('resourceThreshold').value;
 
-            if (resourceName && resourceQuantity) {
-                const resourceItem = document.createElement('li');
-                resourceItem.innerHTML = `
-                    <span>${resourceName} (Cantidad: <span class="quantity">${resourceQuantity}</span>)</span>
-                    <button class="edit">Editar</button>
-                    <button class="delete">Eliminar</button>
-                `;
+            if (resourceName && resourceQuantity && resourceMax && resourceThreshold) {
+                const resourceItem = {
+                    name: resourceName,
+                    quantity: parseInt(resourceQuantity),
+                    max: parseInt(resourceMax),
+                    threshold: parseInt(resourceThreshold)
+                };
 
-                resourceList.appendChild(resourceItem);
+                saveResource(resourceItem);
+                renderResource(resourceItem);
 
                 // Limpiar el formulario después de agregar
-                document.getElementById('resourceName').value = '';
-                document.getElementById('resourceQuantity').value = '';
-
-                // Funcionalidad para editar y eliminar recursos
-                resourceItem.querySelector('.edit').addEventListener('click', function() {
-                    const newQuantity = prompt('Nueva cantidad:', resourceItem.querySelector('.quantity').textContent);
-                    if (newQuantity && !isNaN(newQuantity)) {
-                        resourceItem.querySelector('.quantity').textContent = newQuantity;
-                    }
-                });
-
-                resourceItem.querySelector('.delete').addEventListener('click', function() {
-                    resourceItem.remove();
-                });
+                resourceForm.reset();
             }
         });
+
+        function renderResource(resourceItem) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${resourceItem.name} (Cantidad: <span class="quantity">${resourceItem.quantity}</span>, Máx: ${resourceItem.max}, Umbral: ${resourceItem.threshold}%)</span>
+                <button class="edit">Editar</button>
+                <button class="delete">Eliminar</button>
+            `;
+
+            resourceList.appendChild(li);
+
+            // Editar recurso
+            li.querySelector('.edit').addEventListener('click', function() {
+                const newQuantity = prompt('Nueva cantidad:', resourceItem.quantity);
+                if (newQuantity && !isNaN(newQuantity)) {
+                    resourceItem.quantity = parseInt(newQuantity);
+                    li.querySelector('.quantity').textContent = newQuantity;
+                    updateResource(resourceItem);
+                }
+            });
+
+            // Eliminar recurso
+            li.querySelector('.delete').addEventListener('click', function() {
+                li.remove();
+                deleteResource(resourceItem.name);
+            });
+        }
+
+        function saveResource(resourceItem) {
+            let resources = JSON.parse(localStorage.getItem('resources')) || [];
+            resources.push(resourceItem);
+            localStorage.setItem('resources', JSON.stringify(resources));
+        }
+
+        function updateResource(updatedResource) {
+            let resources = JSON.parse(localStorage.getItem('resources')) || [];
+            resources = resources.map(resource =>
+                resource.name === updatedResource.name ? updatedResource : resource
+            );
+            localStorage.setItem('resources', JSON.stringify(resources));
+        }
+
+        function deleteResource(resourceName) {
+            let resources = JSON.parse(localStorage.getItem('resources')) || [];
+            resources = resources.filter(resource => resource.name !== resourceName);
+            localStorage.setItem('resources', JSON.stringify(resources));
+        }
+
+        function loadResources() {
+            const resources = JSON.parse(localStorage.getItem('resources')) || [];
+            resources.forEach(resource => {
+                renderResource(resource);
+            });
+        }
     </script>
 </body>
 </html>
