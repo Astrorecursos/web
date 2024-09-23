@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>PORTAFOLIO</title>
+</head>
+<body>
+    <script>
+        const images = [
+            'fondo1.jpg',
+            'fondo2.jpg',
+            'fondo3.jpg',
+            'fondo4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }
+
+        setInterval(changeBackgroundImage, 5000); // Cambia la imagen cada 5 segundos
+    </script>
+    <div>
+        <nav>
+            <a href="index.html" target="_blank">Hoja de vida</a>
+            <a href="chat3.html" target="_blank">Soportes</a>   
+        </nav>
+    </div>
+    <div class="container">
+        <h1 style="text-align: center;">PORTAFOLIO SIMÓN DAVID BLANCO</h1>
+        <table>
+            <tr>
+                <th>Proyecto</th>
+            </tr>
+            <tr>
+                <td>PROPUESTA PLAN DE PROYECCIÓN DE RECURSOS EN MISIONES ESPACIALES</td>
+            </tr>
+        </table>
+        <h2>De qué trata el proyecto?</h2>
+        <p>El proyecto "AstroRecursos" se centra en el desarrollo de una página web innovadora y altamente especializada que permitirá la gestión eficiente de recursos críticos en misiones espaciales. Esta página web está diseñada para satisfacer las demandas únicas de las operaciones en el espacio, donde la administración de recursos como alimentos, oxígeno, combustible y energía es esencial para el éxito y la seguridad de la tripulación.</p>
+        <h2>Árbol de problemas del proyecto</h2>
+        <img src="Arboldeproblemas.png" alt="Árbol de problemas" width="693">
+        <h2>Lluvia de ideas de objetivos del proyecto</h2>
+        <table>
+            <tr>
+                <td>Tener los recursos necesarios</td>
+                <td>Plasmar un horario de consumo</td>
+                <td>Buen transporte de provisiones</td>
+                <td>Reutilización de recursos</td>
+                <td>Tener buena administración de los alimentos</td>
+                <td>Respetar los tiempos para hacer uso de las provisiones</td>
+            </tr>
+        </table>
+        <a href="https://internoredpedu-my.sharepoint.com/:w:/g/personal/yury_marquez151_educacionbogota_edu_co/Ef-ug6g9I2NFo0NcktOCgBoBum2pAB7VssWEnSiQ2qI-zw?e=ZVYWYd">Marco Teórico</a>
+    </div>
+</body>
+</html>
+

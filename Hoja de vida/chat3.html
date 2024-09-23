@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>SOPORTES</title>
+</head>
+<body>
+    <script>
+        const images = [
+            'fondo1.jpg',
+            'fondo2.jpg',
+            'fondo3.jpg',
+            'fondo4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }
+
+        setInterval(changeBackgroundImage, 5000); // Cambia la imagen cada 5 segundos
+    </script>
+    <div>
+        <nav>
+            <a href="chat2.html" target="_blank">Portafolio</a>
+            <a href="index.html" target="_blank">Hoja de vida</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>CERTIFICADOS SIMÓN DAVID BLANCO CHISICA</h1>
+        <hr>
+        <div class="certificate">
+            <h2 class="certificate-title">Certificado SG-SST</h2>
+            <embed class="certificate-embed" src="Certificado SG-SST Simón Blanco.pdf" type="application/pdf" width="640px" height="550px" />
+        </div>
+        <div class="certificate">
+            <h2 class="certificate-title">Certificado Universidad Cooperativa</h2>
+            <embed class="certificate-embed" src="Certificado Universidad Simón Blanco.pdf" type="application/pdf" width="640px" height="860px" />
+        </div>
+    </div>
+</body>
+</html>
+

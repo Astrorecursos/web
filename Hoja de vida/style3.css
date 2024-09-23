@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+    transition: background-image 1s ease-in-out;
+    background-image: url('fondo3.jpg');
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+h1, h2 {
+    text-align: center;
+}
+.certificate {
+    margin-bottom: 20px;
+}
+.certificate-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.certificate-embed {
+    display: block;
+    margin: 0 auto;
+}
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin-left: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+a:hover {
+    background-color: rgba(0, 123, 255, 0.5);
+}
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+    position: fixed;
+}

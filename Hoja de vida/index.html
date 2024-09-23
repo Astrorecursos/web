@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CV SIMON BLANCO</title>
+</head>
+<body>
+    <div>
+        <nav>
+            <a href="chat2.html" target="_blank">Portafolio</a>
+            <a href="chat3.html" target="_blank">Soportes</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1 style="text-align: center;">HOJA DE VIDA</h1>
+        <div style="text-align: center;">
+        <img src="losmaslindos.jpg" alt="Trulli">
+        <p>Simón David Blanco Chisica</p>
+            <hr>
+        </div>
+        <h2>DATOS PERSONALES</h2>
+        <table>
+            <tr>
+                <th>Documento de identidad</th>
+                <td>1011202731</td>
+            </tr>
+            <tr>
+                <th>Fecha de nacimiento</th>
+                <td>07/11/2007</td>
+            </tr>
+            <tr>
+                <th>Estado civil</th>
+                <td>Soltero</td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>Calle 50 a sur # 12 a 45</td>
+            </tr>
+            <tr>
+                <th>Celular</th>
+                <td>+57 3142314723</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>blancosimon2007@gmail.com</td>
+            </tr>
+        </table>
+        <hr>
+        <h2>PERFIL LABORAL</h2>
+        <p>Soy un estudiante técnico especializado en mantenimiento de computadores y redes de computadores con una sólida formación técnica y experiencia práctica. Mi habilidad principal radica en diagnosticar, reparar y optimizar sistemas informáticos, garantizando su rendimiento y seguridad.</p>
+        <hr>
+        <h2>EDUCACIÓN</h2>
+        <p>EDUCACIÓN MEDIA TECNICA - REDES DE COMPUTADORES- RUFINO JOSE CUERVO <br> 2024 Bogota-Colombia</p>
+        <hr>
+        <h2>HABILIDADES</h2>
+        <ul>
+            <li>Creación de páginas con HTML</li>
+            <li>Conexión entre dispositivos</li>
+            <li>Conocimiento en hardware</li>
+        </ul>
+        <hr>
+        <h2>IDIOMAS</h2>
+        <p>Español</p>
+        <hr>
+        <h2>SOFTWARES</h2>
+        <ul>
+            <li>Excel</li>
+            <li>Outlook</li>
+            <li>Word</li>
+        </ul>
+        <hr>
+        <h2>ASPIRACIONES</h2>
+        <ul>
+            <li>Conocer el mundo</li>
+            <li>Trabajar en cualquier parte del mundo</li>
+            <li>Tener el carro y la casa de mis sueños</li>
+        </ul>
+    </div>
+    <script>
+        const images = [
+            'fondo1.jpg',
+            'fondo2.jpg',
+            'fondo3.jpg',
+            'fondo4.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function changeBackgroundImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+        }
+
+        setInterval(changeBackgroundImage, 5000); // Cambia la imagen cada 5 segundos
+    </script>
+</body>
+</html>
