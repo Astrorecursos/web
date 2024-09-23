@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoreo Espacial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i0.wp.com/folou.co/wp-content/uploads/2024/07/astronauta-trajes.jpg?resize=1024%2C576&ssl=1');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: rgba(51, 51, 51, 0.8); /* Fondo semi-transparente */
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.5s, box-shadow 0.5s;
+        }
+
+        .card:hover {
+            background-color: rgba(75, 0, 130, 0.8); /* Color espacial (índigo) */
+            box-shadow: 0 0 15px rgba(72, 61, 139, 0.8); /* Resplandor espacial */
+        }
+
+        #notification {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .critical {
+            animation: blink 1s infinite;
+            color: red;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Estilos para el reloj */
+        #clock {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 60px;
+            padding: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monitoreo de la Nave Espacial</h1>
+    <div class="container" id="resource-container">
+        <div class="card" id="water">
+            <h2><input type="text" id="water-name" value="Agua Restante"></h2>
+            <p id="water-level">100%</p>
+            <input type="number" id="water-input" value="100" min="0" max="100">
+        </div>
+        <div class="card" id="oxygen">
+            <h2><input type="text" id="oxygen-name" value="Nivel de Oxígeno"></h2>
+            <p id="oxygen-level">100%</p>
+            <input type="number" id="oxygen-input" value="100" min="0" max="100">
+        </div>
+        <div class="card" id="food">
+            <h2><input type="text" id="food-name" value="Cantidad de Comida"></h2>
+            <p id="food-level">100%</p>
+            <input type="number" id="food-input" value="100" min="0" max="100">
+        </div>
+        <div class="card" id="ship-status">
+            <h2>Condiciones de la Nave</h2>
+            <p id="status-text">Estable</p>
+        </div>
+    </div>
+    <button id="save-btn">Guardar Cambios</button>
+    <button id="add-resource-btn">Agregar Recursos</button>
+    <div id="notification"></div>
+    <div id="clock"></div>
+
+    <script>
+        let waterLevel = 100;
+        let oxygenLevel = 100;
+        let foodLevel = 100;
+        let resources = []; // Array para almacenar los recursos adicionales
+        let updateInterval;
+
+        // Función para actualizar los niveles de agua, oxígeno y comida
+        function updateLevels() {
+            waterLevel = Math.max(0, waterLevel - Math.random() * 5);
+            oxygenLevel = Math.max(0, oxygenLevel - Math.random() * 3);
+            foodLevel = Math.max(0, foodLevel - Math.random() * 4); // Disminución para comida
+
+            document.getElementById('water-level').textContent = `${waterLevel.toFixed(2)}%`;
+            document.getElementById('oxygen-level').textContent = `${oxygenLevel.toFixed(2)}%`;
+            document.getElementById('food-level').textContent = `${foodLevel.toFixed(2)}%`; // Actualización de comida
+
+            resources.forEach(resource => {
+                resource.level = Math.max(0, resource.level - Math.random() * 3);
+                document.getElementById(resource.id).textContent = `${resource.level.toFixed(2)}%`;
+            });
+
+            const shipStatus = document.getElementById('status-text');
+
+            if (waterLevel < 30 || oxygenLevel < 30 || foodLevel < 30) {  // Incluye la comida
+                shipStatus.textContent = 'Crítico';
+                shipStatus.classList.add('critical');
+            } else if (waterLevel < 60 || oxygenLevel < 60 || foodLevel < 60) {  // Incluye la comida
+                shipStatus.textContent = 'Inseguro';
+                shipStatus.classList.remove('critical');
+            } else {
+                shipStatus.textContent = 'Estable';
+                shipStatus.classList.remove('critical');
+            }
+
+            if (waterLevel < 50 || oxygenLevel < 50 || foodLevel < 50) {  // Incluye la comida
+                document.getElementById('notification').style.display = 'block';
+                document.getElementById('notification').textContent = 'Alerta: El nivel de agua, oxígeno o comida está por debajo del 50%';
+            } else {
+                document.getElementById('notification').style.display = 'none';
+            }
+
+            if (waterLevel <= 0 || oxygenLevel <= 0 || foodLevel <= 0) {
+                alert('¡Peligro! Muerte inminente');
+                clearInterval(updateInterval);
+            }
+        }
+
+        // Función para guardar los cambios y empezar a disminuir los niveles
+        document.getElementById('save-btn').addEventListener('click', function() {
+            waterLevel = parseFloat(document.getElementById('water-input').value);
+            oxygenLevel = parseFloat(document.getElementById('oxygen-input').value);
+            foodLevel = parseFloat(document.getElementById('food-input').value);  // Guarda el nivel de comida
+
+            clearInterval(updateInterval);  // Detener el intervalo anterior si existe
+            updateInterval = setInterval(updateLevels, 1000);  // Iniciar el intervalo para disminuir los niveles
+        });
+
+        // Función para agregar nuevos recursos
+        document.getElementById('add-resource-btn').addEventListener('click', function() {
+            const container = document.getElementById('resource-container');
+            const resourceId = `resource-${resources.length}`;
+            const newCard = document.createElement('div');
+            newCard.classList.add('card');
+
+            newCard.innerHTML = `
+                <h2><input type="text" value="Nuevo Recurso"></h2>
+                <p id="${resourceId}">100%</p>
+                <input type="number" id="${resourceId}-input" value="100" min="0" max="100">
+            `;
+
+            container.appendChild(newCard);
+
+            resources.push({ id: resourceId, level: 100 });
+
+            // Escuchar el cambio de valor en el campo de entrada y actualizar el nivel
+            document.getElementById(`${resourceId}-input`).addEventListener('change', function(e) {
+                const newValue = parseFloat(e.target.value);
+                const resourceIndex = resources.findIndex(resource => resource.id === resourceId);
+                resources[resourceIndex].level = newValue;
+            });
+        });
+
+        // Función para actualizar el reloj
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+
+            document.getElementById('clock').textContent = `${dateString} ${timeString}`;
+        }
+
+        setInterval(updateClock, 1000);  // Actualiza el reloj cada segundo
+    </script>
+</body>
+</html>
+,
