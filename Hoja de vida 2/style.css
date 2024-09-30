@@ -1,0 +1,77 @@
+.navbar {
+    overflow: hidden; 
+    position: fixed;
+}
+/* Estilos para los enlaces de la barra de navegación */
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2; /* Color de texto de los enlaces */
+    text-align:center;
+    background-color: rgba(51, 1, 1, 0.336); /* Color de fondo de la barra de navegación */
+    overflow: hidden;
+    padding: 20px 20px; /* Espaciado alrededor del texto en los enlaces */
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+}
+
+/* Cambiar el color de fondo de los enlaces al pasar el mouse por encima */
+.navbar a:hover {
+    background-color: hwb(310 10% 13%); /* Color de fondo al pasar el mouse por encima */
+    color: rgb(233, 219, 219); /* Cambia el color del texto al pasar el mouse por encima */
+}
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Color de texto blanco para mayor contraste */
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: hsla(286, 88%, 46%, 0.502); /* Fondo semitransparente negro */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(39, 4, 235, 0.8); /* Sombra */
+}
+h1 {
+    text-align: center;
+    background-color: SlateBlue; /* Color de fondo del encabezado */
+    color: white; /* Color de texto blanco */
+    padding: 10px;
+    margin-top: 0; /* Elimina el espacio superior */
+}
+h2, h4 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white; /* Color de texto blanco para mayor contraste */
+}
+hr {
+    border: 1px solid blue;
+    margin: 20px 0;
+}
+table {
+    width: 70%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 2px solid white; /* Borde blanco para contraste */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+th, td {
+    border: 1px solid white; /* Borde blanco para contraste */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente blanco */
+}
+th {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+td {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo semitransparente blanco */
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+

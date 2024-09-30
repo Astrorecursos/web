@@ -1,0 +1,140 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Vida de Maicol Arias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="portafolio maicol arias.html">PORTAFOLIO</a>
+        <a href="SOPORTESMAICOL.HTML">SOPORTES</a>
+        <a href="hojadevida.html">HOJA DE VIDA</a>
+    </div>  
+
+    <div class="container">
+        <h1>HOJA DE VIDA</h1>
+        <style>
+            body {
+                transition: background-color 0.5s ease; /* Transición suave de color de fondo */
+                overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
+            }
+            .bg1 {
+                background-color: #4f14bd; /* Fondo inicial */
+            }
+            .bg2 {
+                background-color: #136ec480; /* Segundo fondo */
+            }
+            .container {
+                animation: sweepBackground 1s forwards; /* Animación del barrido */
+            }
+            @keyframes sweepBackground {
+                from { background-color: #1943b896; } /* Fondo inicial */
+                to { background-color: #34a6d38a; } /* Fondo final */
+            }
+          </style>
+        
+        <div class="container">
+            <h2>Maicol Steven Arias Garzon</h2>
+            <img src="arias.jpg" alt="Foto de Maicol" width="333">
+            <hr>
+            <h1>DATOS PERSONALES</h1>
+            <h4>Nombre: Maicol Arias</h4>
+            <h4>Documento de identidad: 1028483240</h4>
+            <h4>Fecha de nacimiento: 11/01/2007</h4>
+            <h4>Nacionalidad: Colombia</h4>
+            <h4>Estado Civil: Casado</h4>
+            <h4>Dirección: CRA5Q #49D 80 sur</h4>
+            <h4>Teléfono celular: +57 312 5345799</h4>
+            <hr>
+            <h1>PERFIL LABORAL</h1>
+            <h2>Estudiante técnico de redes y sistemas de computadores, y comerciante laboral en venta de ropa para dama y auxiliar en marketing digital</h2>
+            <hr>
+            <h1>EDUCACIÓN</h1>
+            <h4>Grado en Educación Básica en Redes de Computadores</h4>
+            <p>Rufino José Cuervo - Año 2023/2024</p>
+            <h4>Curso Básico en Marketing Digital</h4>
+            <p>Universidad Cooperativa de Colombia - Año 2023/2023</p>
+            <hr>
+            <h1>HABILIDADES</h1>
+            <h4>1. Trabajo en equipo</h4>
+            <h4>2. Análisis</h4>
+            <h4>3. Lógica</h4>
+            <h4>4. Marketing Digital</h4>
+            <hr>
+            <h1>IDIOMAS</h1>
+            <p>Español</p>
+            <hr>
+            <h1>ASPIRACIONES</h1>
+            <p>1. Viajar por el mundo</p>
+            <p>2. Llegar al éxito</p>
+            <p>3. Ser uno de los mejores DJs del mundo</p>
+            <hr>
+        </div>
+        <hr>
+        <table>
+            <tr>
+                <th colspan="6">DATOS PERSONALES</th>
+            </tr>
+            <tr>
+                <th>Documento de identidad</th>
+                <th>Fecha de nacimiento</th>
+                <th>Estado civil</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+                <th>Email</th>
+            </tr>
+            <tr>
+                <td>1028483240</td>
+                <td>11/01/2007</td>
+                <td>Casado</td>
+                <td>Cra 5Q #49D 80 sur</td>
+                <td>+57 3125345799</td>
+                <td>maicolarias119@gmail.com</td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <th colspan="6">PERFIL LABORAL</th>
+            </tr>
+            <tr>
+                <td colspan="6">Soy un estudiante técnico especializado en mantenimiento de computadores, Estudiante técnico de redes y sistemas de computadores, y comerciante laboral en venta de ropa para dama y auxiliar en marketing digital.</td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <th colspan="6">EDUCACIÓN</th>
+            </tr>
+            <tr>
+                <td colspan="6">EDUCACIÓN MEDIA TÉCNICA - REDES DE COMPUTADORES - RUFINO JOSÉ CUERVO <br> 2024 Bogotá-Colombia</td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <tr>
+                <th colspan="6">HABILIDADES</th>
+            </tr>
+            <tr>
+                <td colspan="2">Creación de páginas con HTML</td>
+                <td colspan="2">DJ productor musical de género musical House</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let colors = ["#ffcccc", "#ff99cc", "#ff66cc", "#ff3399", "#ff0066", "#cc0066"];
+        let currentIndex = 0;
+
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = colors[currentIndex];
+            currentIndex = (currentIndex + 1) % colors.length;
+        }
+
+        setInterval(changeBackgroundColor, 2000); // Cambia cada 2 segundos
+    </script>
+</body>
+</html>
+

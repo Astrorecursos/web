@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Cambio de idioma a español -->
+<head>
+    <link rel="stylesheet" href="style2.css">
+    <title>SOPORTES</title>
+    <button onclick="changeTableColor()">Cambiar color de fondo de la tabla</button>
+
+    <style>
+        /* Estilos para la tabla con transición de color */
+        .bg1 {
+            background-color: #520ed198; /* Fondo inicial */
+        }
+        .bg2 {
+            background-color: #147ee080; /* Segundo fondo */
+        }
+        .table-transition {
+            transition: background-color 0.5s ease; /* Transición suave de color de fondo */
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <a href="hojadevida.html">HOJA DE VIDA</a>
+        <a href="Portafolio maicol arias.html">PORTAFOLIO</a>
+        <a href="SOPORTESMAICOL.HTML">SOPORTES</a>
+    </div>
+
+    <!-- Tabla con transición de colores -->
+    <table style="width: 80%;" class="bg1 table-transition">
+        <tr>
+            <th colspan="2">Soportes</th>
+        </tr>
+        <tr>
+            <td colspan="2">Maicol Steven Arias Garzón</td>
+        </tr>
+        <tr>
+            <th>CERTIFICADO EN MARKETING DIGITAL</th>
+        </tr>
+        <tr>
+            <td><img src="Marketin.jpg" alt="Trulli" width="350"><p>Elaborado en la Universidad Cooperativa de Colombia en el año 2023</p></td>
+        </tr>
+        <tr>
+            <th>CERTIFICADO DE ARL</th>
+        </tr>
+        <tr>
+            <td><a href="Certificado.pdf">Aquí verás el certificado ARL</a><p>Elaborado en el Colegio Rufino José Cuervo en el año 2024</p></td>
+        </tr>
+    </table>
+
+    <!-- Botón para cambiar el color de fondo de la tabla -->
+    
+
+    <script>
+        // Función para cambiar el color de fondo de la tabla
+        function changeTableColor() {
+            var table = document.querySelector('table');
+            // Alternar clases para cambiar el color de fondo
+            if (table.classList.contains("bg1")) {
+                table.classList.remove("bg1");
+                table.classList.add("bg2");
+            } else {
+                table.classList.remove("bg2");
+                table.classList.add("bg1");
+            }
+        }
+    </script>
+</body>
+</html>

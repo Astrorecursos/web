@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="stylesheet" href="style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio de Maicol Arias</title>
+  
+
+</head>
+<body>
+<!-- Barra de navegación -->
+<div class="navbar">
+  <a href="hojadevida.html"> HOJA DE VIDA </a>
+  <a href="SOPORTESMAICOL.HTML"> SOPORTES</a>
+  <a href="Portafolio maicol arias.html"> PORTAFOLIO</a>
+</div>
+  
+
+    
+  
+
+<body>
+  <header>
+    <h1>PORTAFOLIO</h1>
+    <p>Maicol Steven Arias Garzon</p>
+  </header>
+
+  <div class="container">
+    <h2>ASTRO RECURSOS</h2>
+    <hr>
+    <h3>¿DE QUE TRATA EL PROYECTO?</h3>
+    <p>El proyecto "AstroRecursos" se centra en el desarrollo de una página web que se basa en la gestión eficiente de recursos críticos en misiones espaciales. Está diseñada para satisfacer las demandas únicas de las operaciones espaciales, el inventario lleva: alimentos, oxígeno, combustible y energía esencial para el éxito y la seguridad de la tripulación.</p>
+    <hr>
+    <h3>ARBOL DE PROBLEMAS DE MI PROYECTO</h3>
+    <img src="Arbol_de_Problemass.jpg" alt="Arbol de problemas" width="100%">
+    <hr>
+   
+
+    <!-- Ejemplo de una tabla con colores contrastantes -->
+    <table>
+      <tr>
+        <th>OBJETIVOS</th>
+        <th>Ventajas</th>
+      </tr>
+      <tr>
+        <td>Tener una mejor administracion de recursos</td>
+        <td>Tiempos saludables en la administracion de los recursos</td>
+      </tr>
+    </table>
+  </div>
+</body>
+<style>
+  body {
+      transition: background-color 0.5s ease; /* Transición suave de color de fondo */
+      overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
+  }
+  .bg1 {
+      background-color: #4f14bd; /* Fondo inicial */
+  }
+  .bg2 {
+      background-color: #136ec480; /* Segundo fondo */
+  }
+  .container {
+      animation: sweepBackground 1s forwards; /* Animación del barrido */
+  }
+  @keyframes sweepBackground {
+      from { background-color: #1943b896; } /* Fondo inicial */
+      to { background-color: #34a6d38a; } /* Fondo final */
+  }
+</style>
+</head>
+<body class="bg1">
+
+<div class="navbar">
+  <a href="Portafolio maicol arias.HTML">PORTAFOLIO</a>
+  <a href="SOPORTEMAICOL.HTML">SOPORTES</a>
+  <a href="hoja de vida maicol.html">HOJA DE VIDA</a>
+</div>  
+
+<button onclick="changeBackground()">Cambiar fondo</button> <!-- Botón para cambiar el fondo -->
+
+<div class="container">
+  <!-- Contenido de tu página -->
+</div>
+
+<script>
+  // Función para cambiar el fondo con transición
+  function changeBackground() {
+      var body = document.body;
+      // Alternar clases para cambiar el color de fondo
+      if (body.classList.contains("bg1")) {
+          body.classList.remove("bg1");
+          body.classList.add("bg2");
+      } else {
+          body.classList.remove("bg2");
+          body.classList.add("bg1");
+      }
+  }
+
+  // Elimina el cambio de fondo automático después de 3 segundos
+  clearTimeout(changeBackground);
+</script>
+</html>
